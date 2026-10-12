@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.17.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameCatalogue.Application\GameCatalogue.Application.csproj" />
+    <ProjectReference Include="..\GameCatalogue.Infrastructure\GameCatalogue.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
