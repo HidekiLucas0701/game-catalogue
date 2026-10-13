@@ -1,6 +1,64 @@
 @GameCatalogue.Api_HostAddress = http://localhost:5270
+@baseUrl = {{GameCatalogue.Api_HostAddress}}/api/games
 
-GET {{GameCatalogue.Api_HostAddress}}/weatherforecast/
+# Substitua pelo ID retornado no POST
+@gameId = 000000000000000000000000
+
+### Listar todos os jogos
+GET {{baseUrl}}
+Accept: application/json
+
+### Buscar jogo por ID
+GET {{baseUrl}}/{{gameId}}
+Accept: application/json
+
+### Cadastrar jogo
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "Elden Ring",
+  "genre": "RPG",
+  "platform": "PC",
+  "releaseDate": "2022-02-25T00:00:00Z",
+  "publisher": "Bandai Namco",
+  "price": 229.90
+}
+
+### Cadastrar jogo com corpo inválido (400)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "Sem dados"
+}
+
+### Atualizar jogo
+PUT {{baseUrl}}/{{gameId}}
+Content-Type: application/json
+
+{
+  "title": "Elden Ring",
+  "genre": "RPG",
+  "platform": "PC",
+  "releaseDate": "2022-02-25T00:00:00Z",
+  "publisher": "Bandai Namco",
+  "price": 179.90
+}
+
+### Remover jogo
+DELETE {{baseUrl}}/{{gameId}}
+
+### Filtrar por gênero
+GET {{baseUrl}}/genre/RPG
+Accept: application/json
+
+### Filtrar por plataforma
+GET {{baseUrl}}/platform/Nintendo%20Switch
+Accept: application/json
+
+### Preço médio por gênero
+GET {{baseUrl}}/average-price-by-genre
 Accept: application/json
 
 ###
