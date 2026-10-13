@@ -1,10 +1,11 @@
 using GameCatalogue.Domain.Entities;
 using GameCatalogue.Infrastructure.Data;
 using MongoDB.Driver;
+using GameCatalogue.Application.Interfaces;
 
 namespace GameCatalogue.Infrastructure.Repositories;
 
-public class GameRepository
+public class GameRepository : IGameRepository
 {
     private readonly MongoDbContext _context;
 
