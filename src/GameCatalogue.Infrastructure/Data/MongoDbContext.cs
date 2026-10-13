@@ -19,11 +19,11 @@ public class MongoDbContext
         try
         {
             client.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
-            Console.WriteLine("Pinged na nossa implantação. Conexão com o MongoDB Atlas realizada com sucesso!");
+            Console.WriteLine("Pinged na nossa implantação. Conexão com o MongoDB realizada com sucesso!");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao conectar no MongoDB Atlas: {ex.Message}");
+            Console.WriteLine($"Erro ao conectar no MongoDB: {ex.Message}");
         }
 
         _database = client.GetDatabase(settings.Value.DatabaseName);
