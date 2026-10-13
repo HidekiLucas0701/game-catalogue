@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -7,7 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.18.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameCatalogue.Application\GameCatalogue.Application.csproj" />
+    <ProjectReference Include="..\GameCatalogue.Infrastructure\GameCatalogue.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <Target Name="StartMongoContainer"
+          BeforeTargets="Build"
+          Condition="'$(Configuration)' == 'Debug' And '$(SkipMongoContainer)' != 'true' And '$(DesignTimeBuild)' != 'true'">
+    <Message Importance="high" Text="Subindo container do MongoDB via Docker Compose..." />
+    <Exec Command="docker compose -f &quot;$(MSBuildThisFileDirectory)..\..\docker-compose.yml&quot; up -d --wait"
+          ContinueOnError="true" />
+  </Target>
 
 </Project>
